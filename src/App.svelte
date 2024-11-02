@@ -56,9 +56,9 @@
   <!-- Then on the outer most html... give a slot attribute that equals the name attribute on the slot in the component -->
   <!-- look in the NamedSlot component to see that there are 3 slots with names that correspond to the slot = here on the parent  -->
   <NamedSlot>
-    <div slot="header-slot"><h2>content for header slot</h2></div>
-    <div slot="content-slot"><h5>content for content slot</h5></div>
-    <div slot="footer-slot"><button>content for footer slot</button></div>
+    <div slot="header"><h2>content for header slot</h2></div>
+    <div slot="content"><h5>content for content slot</h5></div>
+    <div slot="footer"><button>content for footer slot</button></div>
   </NamedSlot>
 </main>
 
