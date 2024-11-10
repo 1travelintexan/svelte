@@ -7,6 +7,12 @@
   import Button from "./components/Button.svelte";
   import CardSlot from "./components/CardSlot.svelte";
   import NamedSlot from "./components/NamedSlot.svelte";
+  import FetchComponent from "./components/FetchComponent.svelte";
+  import AutoFocus from "./components/AutoFocus.svelte";
+  import TabA from "./components/TabA.svelte";
+  import TabB from "./components/TabB.svelte";
+  import TabC from "./components/TabC.svelte";
+  import Counter, { getTotalCount } from "./components/Counter.svelte";
   //create a variable to send as props
   let firstName = "Clark";
   let lastName = "Kent";
@@ -26,6 +32,9 @@
     console.log("hello from app", event);
     alert(event.detail);
   }
+
+  //this is for the dynamic components
+  let activeTab = TabA;
 </script>
 
 <main>
@@ -55,11 +64,50 @@
   <!-- you need to provide the same number of divs for the slots in the component  -->
   <!-- Then on the outer most html... give a slot attribute that equals the name attribute on the slot in the component -->
   <!-- look in the NamedSlot component to see that there are 3 slots with names that correspond to the slot = here on the parent  -->
+  <!-- this is a test  fadf -->
   <NamedSlot>
     <div slot="header"><h2>content for header slot</h2></div>
     <div slot="content"><h5>content for content slot</h5></div>
     <div slot="footer"><button>content for footer slot</button></div>
   </NamedSlot>
+  <!-- fetching data and looping over it component  -->
+  <h2>Fetching Example:</h2>
+  <FetchComponent />
+  <!-- binding auto focus example  -->
+  <AutoFocus />
+  <hr />
+  <!-- Dynamic components  -->
+  <!-- three different components that render inside a div  -->
+  <!-- In script on App there is a variable called active tab set to 'tabA' -->
+  <!-- <button on:click={() => (activeTab = "TabA")}>Tab A</button>
+  <button on:click={() => (activeTab = "TabB")}>Tab B</button>
+  <button on:click={() => (activeTab = "TabC")}>Tab C</button>
+  {#if activeTab === "TabA"}
+    <TabA />
+  {:else if activeTab === "TabB"}
+    <TabB />
+  {:else}
+    <TabC />
+  {/if} -->
+  <!-- the same UI can be accomplished with the special svelte:component with the this={ a specific component you want to show}  -->
+  <button on:click={() => (activeTab = TabA)}>Tab A</button>
+  <button on:click={() => (activeTab = TabB)}>Tab B</button>
+  <button on:click={() => (activeTab = TabC)}>Tab C</button>
+  <svelte:component this={activeTab} />
+  <!-- ***************special elements*************
+  :component - for dynamic components
+  :self - allows component to contain itself recursively
+  :window -  Add event listeners to the window object
+  :body - listen to events that fire on the document body
+  :head - Insert elements inside the head of your document
+  :options - specify complier options -->
+  <h2>Module Context</h2>
+  <h3>Here is the total count(module):</h3>
+  <button on:click={() => alert(getTotalCount())}>total count</button>
+
+  <Counter />
+  <Counter />
+  <Counter />
 </main>
 
 <style>
