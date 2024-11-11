@@ -1,5 +1,4 @@
 <script>
-  import svelteLogo from "./assets/svelte.svg";
   import { setContext } from "svelte";
   import Greet from "./components/Greet.svelte";
   import GreetWithProps from "./components/GreetWithProps.svelte";
@@ -13,6 +12,9 @@
   import TabB from "./components/TabB.svelte";
   import TabC from "./components/TabC.svelte";
   import Counter, { getTotalCount } from "./components/Counter.svelte";
+  import DisplayStore from "./components/stores/DisplayStore.svelte";
+  import IncrementStore from "./components/stores/IncrementStore.svelte";
+  import DecrementStore from "./components/stores/DecrementStore.svelte";
   //create a variable to send as props
   let firstName = "Clark";
   let lastName = "Kent";
@@ -101,13 +103,20 @@
   :body - listen to events that fire on the document body
   :head - Insert elements inside the head of your document
   :options - specify complier options -->
+
+  <!-- *****************Module component states that are shared **************** -->
+  <!-- each counter component has its own counter state but the total count is module and shared -->
   <h2>Module Context</h2>
   <h3>Here is the total count(module):</h3>
   <button on:click={() => alert(getTotalCount())}>total count</button>
+  <Counter />
+  <Counter />
+  <Counter />
 
-  <Counter />
-  <Counter />
-  <Counter />
+  <!-- *****************Stores *******************  -->
+  <DisplayStore />
+  <IncrementStore />
+  <DecrementStore />
 </main>
 
 <style>
