@@ -15,6 +15,7 @@
   import DisplayStore from "./components/stores/DisplayStore.svelte";
   import IncrementStore from "./components/stores/IncrementStore.svelte";
   import DecrementStore from "./components/stores/DecrementStore.svelte";
+  import ResetStore from "./components/stores/ResetStore.svelte";
   //create a variable to send as props
   let firstName = "Clark";
   let lastName = "Kent";
@@ -117,6 +118,7 @@
   <DisplayStore />
   <IncrementStore />
   <DecrementStore />
+  <ResetStore />
 </main>
 
 <style>
